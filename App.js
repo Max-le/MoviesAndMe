@@ -1,8 +1,9 @@
-import React from 'react';
-import Search from './components/search';export default class App extends React.Component {
+import React from 'react'
+import Navigation from './navigation/Navigation'
+export default class App extends React.Component {
   render() {
     return (
-      <Search/>
-    );
+      <Navigation/>
+    )
   }
 }
