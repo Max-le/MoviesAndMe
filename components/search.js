@@ -55,6 +55,9 @@ class Search extends React.Component {
       )
     }
   }
+  _displayDetailforFilm = (idFilm) => {
+    this.props.navigation.navigate("FilmDetail", { idFilm: idFilm })
+  }
 
   render() {
     return (
@@ -62,6 +65,7 @@ class Search extends React.Component {
         <TextInput
           style={styles.textinput}
           placeholder='Titre du film'
+          defaultValue='Star Wars'
           onChangeText={(text) => this._searchTextInputChanged(text)}
           onSubmitEditing={() => this._searchFilms()}
         />
@@ -69,7 +73,7 @@ class Search extends React.Component {
         <FlatList
           data={this.state.films}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) => <FilmItem film={item}/>}
+          renderItem={({item}) => <FilmItem film={item} displayDetailForFilm={this._displayDetailforFilm}/>}
           onEndReachedThreshold={0.5}
           onEndReached={() => {
               if (this.page < this.totalPages) {
@@ -85,9 +89,8 @@ class Search extends React.Component {
 
 const styles = StyleSheet.create({
   main_container: {
-    flex: 1,
-    marginTop: 20
-  },
+    flex: 1
+    },
   textinput: {
     marginLeft: 5,
     marginRight: 5,
